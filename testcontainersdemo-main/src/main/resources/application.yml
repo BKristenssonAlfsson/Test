@@ -1,0 +1,44 @@
+server:
+  servlet:
+    context-path: /rest/demo/v1
+  error:
+    include-message: always
+  port: 10000
+management:
+  endpoint:
+    health:
+      show-details: always
+
+spring:
+  datasource:
+    url: jdbc:postgresql://postgres:5432/demo?useSSL=false&allowPublicKeyRetrieval=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&useUnicode=yes&characterEncoding=UTF-8
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQL10Dialect
+        format_sql: true
+    show-sql: true
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: rabbit
+    password: rabbit
+
+message:
+  rabbitmq:
+    queue:
+      name: demos
+      exchange: demos
+      routingkey: demos
+
+springdoc:
+  swagger-ui:
+    path: /swagger
+  api-docs:
+    enabled: true
+    path: /api-docs
